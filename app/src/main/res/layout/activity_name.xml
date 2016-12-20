@@ -18,12 +18,6 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true">
 
-        <TextView
-            android:text="Joueurs:"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/textView" />
-
         <TableLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
@@ -36,25 +30,31 @@
                     android:text="Johan"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/button2" />
+                    android:id="@+id/button2"
+                    android:onClick="launchPlayer" />
 
                 <TextView
                     android:text="TextView"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:id="@+id/textScore1" />
+                    android:layout_weight="1"
+                    android:id="@+id/textScore1"
+                    tools:text="0" />
 
                 <Button
                     android:text="Noé"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/button3" />
+                    android:id="@+id/button3"
+                    android:onClick="launchPlayer" /> />
 
                 <TextView
                     android:text="TextView"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:id="@+id/textScore2" />
+                    android:layout_weight="1"
+                    android:id="@+id/textScore2"
+                    tools:text="0" />
             </TableRow>
 
             <TableRow
@@ -65,28 +65,40 @@
                     android:text="Vanou"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/button4" />
+                    android:id="@+id/button4"
+                    android:onClick="launchPlayer" /> />
 
                 <TextView
                     android:text="TextView"
-                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/textScore3" />
+                    android:layout_weight="1"
+                    android:id="@+id/textScore3"
+                    tools:text="0     "
+                    android:layout_width="wrap_content" />
 
                 <Button
                     android:text="Papa"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/button5" />
+                    android:id="@+id/button5"
+                    android:onClick="launchPlayer" /> />
 
                 <TextView
                     android:text="TextView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/textScore4" />
+                    android:layout_weight="1"
+                    android:id="@+id/textScore4"
+                    tools:text="0" />
             </TableRow>
 
         </TableLayout>
+
+        <TextView
+            android:text="Joueurs:"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView" />
 
     </LinearLayout>
 </RelativeLayout>
