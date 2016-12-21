@@ -85,8 +85,16 @@ public class PlayActivity extends AppCompatActivity {
         played += 1;
 
         if(played<=10) {
-            a = rand.nextInt(10);
-            b = rand.nextInt(10);
+            if (level == 1) {
+                a = rand.nextInt(5);
+                b = rand.nextInt(5);
+            } else if (level == 2) {
+                a = rand.nextInt(10);
+                b = rand.nextInt(5);
+            } else {
+                a = rand.nextInt(10);
+                b = rand.nextInt(10);
+            }
             result = a + b;
             textCalc.setText(a+" + "+b+" = ");
             ct = new CountDownTimer(time*1000, 1000) {
