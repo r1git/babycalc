@@ -99,6 +99,7 @@ public class PlayActivity extends AppCompatActivity {
         } else {
             Intent returnIntent = new Intent();
             returnIntent.putExtra("score", score);
+            Log.d(TAG, " *************** score is"+score);
             setResult(RESULT_OK, returnIntent);
             finish();
         }
