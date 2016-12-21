@@ -26,14 +26,17 @@ public class LevelActivity extends AppCompatActivity {
         player = intent.getIntExtra(NameActivity.EXTRA_PLAYER_ID, 0);
         TextView textView = (TextView) findViewById(R.id.textPlayer);
         textView.setText(playName);
+        TextView textTime = (TextView) findViewById(R.id.textTime);
+        textTime.setText("Time : "+time);
 
         SeekBar sb = (SeekBar) findViewById(R.id.seekBar);
         sb.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                TextView textView = (TextView) findViewById(R.id.textTime);
+
                 time = progress+1;
-                textView.setText("Time: "+time);
+                TextView textTime = (TextView) findViewById(R.id.textTime);
+                textTime.setText("Time: "+time);
             }
 
             @Override

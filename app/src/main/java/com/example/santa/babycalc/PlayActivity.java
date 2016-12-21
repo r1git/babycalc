@@ -2,10 +2,10 @@ package com.example.santa.babycalc;
 
 import android.content.Intent;
 import android.os.CountDownTimer;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -51,6 +51,7 @@ public class PlayActivity extends AppCompatActivity {
     }
 
     public void clickNum(View view) {
+        //TODO: play sound click
         String num = (String) ((Button)view).getText();
         if (res.length() < 2 && (res.length() == 1 || num != "0")) {
             res += num;
@@ -60,24 +61,33 @@ public class PlayActivity extends AppCompatActivity {
     }
 
     public void clickDel(View view) {
-        if(res.length() > 0)
-            res = res.substring(0,res.length()-1);
-        resBox.setText(res);
+        if(res.length() > 0) {
+            //TODO: play sound del
+            res = res.substring(0, res.length() - 1);
+            resBox.setText(res);
+        } else {
+            //TODO: play sound fail
+        }
     }
 
     public void clickOK(View view) {
-        ct.cancel();
-        if(res.length()>0 && Integer.parseInt(res) == result)
-        {
-            score += 10 - time + level;
-            textLog.setText("Bravo !! ");
-            textScore.setText("Score: "+score);
+        if (res.length()>0) {
+            ct.cancel();
+            if (Integer.parseInt(res) == result) {
+                //TODO: play sound good !!
+                score += 10 - time + level;
+                textLog.setText("Bravo !! ");
+                textScore.setText("Score: " + score);
+            } else {
+                //TODO: play sound fail !!
+                textLog.setText("Faux !! C'était " + result);
+            }
+            res = "";
+            resBox.setText(res);
+            initCT();
         } else {
-            textLog.setText("Faux !! C'était "+result);
+            //TODO: play sound fail
         }
-        res = "";
-        resBox.setText(res);
-        initCT();
     }
 
     private void initCT() {
@@ -103,13 +113,19 @@ public class PlayActivity extends AppCompatActivity {
                 }
 
                 public void onFinish() {
+                    //TODO: play sound timeout
                     textLog.setText("Trop tard !");
+                    res = "";
+                    resBox.setText(res);
                     initCT();
                 }
             };
 
             ct.start();
         } else {
+            /*AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setMessage("Nouveau score: "+score).setTitle("Fin");
+            AlertDialog dialog = builder.create();*/
             Intent returnIntent = new Intent();
             returnIntent.putExtra("score", score);
             setResult(RESULT_OK, returnIntent);
