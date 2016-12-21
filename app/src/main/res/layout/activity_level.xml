@@ -19,7 +19,8 @@
             android:text="TextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/textPlayer" />
+            android:id="@+id/textPlayer"
+            android:textSize="24sp" />
 
         <LinearLayout
             android:orientation="horizontal"
@@ -30,15 +31,15 @@
                 android:text="TextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/textView2"
-                tools:text="Temps:" />
+                android:id="@+id/textTime"
+                tools:text="Temps: 10" />
 
             <SeekBar
                 style="@style/Widget.AppCompat.SeekBar.Discrete"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:max="10"
-                android:progress="3"
+                android:max="9"
+                android:progress="9"
                 android:id="@+id/seekBar"
                 android:layout_weight="1" />
 

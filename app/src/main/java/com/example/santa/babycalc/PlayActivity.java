@@ -17,7 +17,6 @@ public class PlayActivity extends AppCompatActivity {
     private static int level = 1;
     private static int time = 10;
     private static int played = 0;
-    private static int timeGame = 10;
     private static int score = 0;
     private static CountDownTimer ct = null;
     private static TextView counter = null;
@@ -37,11 +36,16 @@ public class PlayActivity extends AppCompatActivity {
         level = intent.getIntExtra(LevelActivity.EXTRA_LEVEL, 1);
         time = intent.getIntExtra(LevelActivity.EXTRA_TIME, 10);
         played = 0;
+        score = 0;
         counter = ((TextView) findViewById(R.id.textCounter));
+        counter.setText(Integer.toString(time));
         resBox  = ((TextView) findViewById(R.id.textRes));
+        resBox.setText("");
         textCalc  = ((TextView) findViewById(R.id.textCalc));
         textLog  = ((TextView) findViewById(R.id.textLog));
+        textLog.setText("C'est parti !!");
         textScore  = ((TextView) findViewById(R.id.textScore));
+        textScore.setText("Score: 0");
         rand = new Random();
         initCT();
     }
@@ -50,6 +54,7 @@ public class PlayActivity extends AppCompatActivity {
         String num = (String) ((Button)view).getText();
         if (res.length() < 2 && (res.length() == 1 || num != "0")) {
             res += num;
+            resBox.setText(res);
             resBox.setText(res);
         }
     }
@@ -65,10 +70,10 @@ public class PlayActivity extends AppCompatActivity {
         if(res.length()>0 && Integer.parseInt(res) == result)
         {
             score += 10 - time + level;
-            textLog.setText("Good !!! ");
-            textScore.setText(Integer.toString(score));
+            textLog.setText("Bravo !! ");
+            textScore.setText("Score: "+score);
         } else {
-            textLog.setText("Wrong !!! ");
+            textLog.setText("Faux !! C'était "+result);
         }
         res = "";
         resBox.setText(res);
@@ -83,14 +88,14 @@ public class PlayActivity extends AppCompatActivity {
             a = rand.nextInt(10);
             b = rand.nextInt(10);
             result = a + b;
-            textCalc.setText(a+" + "+b+" = ?");
-            ct = new CountDownTimer(timeGame*1000, 1000) {
+            textCalc.setText(a+" + "+b+" = ");
+            ct = new CountDownTimer(time*1000, 1000) {
                 public void onTick(long untilFinished) {
                     counter.setText(Long.toString(untilFinished / 1000));
                 }
 
                 public void onFinish() {
-                    textLog.setText("Too late");
+                    textLog.setText("Trop tard !");
                     initCT();
                 }
             };
@@ -99,7 +104,6 @@ public class PlayActivity extends AppCompatActivity {
         } else {
             Intent returnIntent = new Intent();
             returnIntent.putExtra("score", score);
-            Log.d(TAG, " *************** score is"+score);
             setResult(RESULT_OK, returnIntent);
             finish();
         }

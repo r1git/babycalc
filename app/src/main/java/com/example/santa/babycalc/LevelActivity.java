@@ -6,13 +6,14 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.SeekBar;
 import android.widget.TextView;
 
 public class LevelActivity extends AppCompatActivity {
 
     public static final String EXTRA_LEVEL = "level";
     public static final String EXTRA_TIME = "time";
-    private static final int time = 10;
+    private static int time = 10;
     private static int player = 0;
 
     @Override
@@ -25,6 +26,27 @@ public class LevelActivity extends AppCompatActivity {
         player = intent.getIntExtra(NameActivity.EXTRA_PLAYER_ID, 0);
         TextView textView = (TextView) findViewById(R.id.textPlayer);
         textView.setText(playName);
+
+        SeekBar sb = (SeekBar) findViewById(R.id.seekBar);
+        sb.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                TextView textView = (TextView) findViewById(R.id.textTime);
+                time = progress+1;
+                textView.setText("Time: "+time);
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+
+            }
+        });
+
     }
 
     public void clickLevel(View view) {
