@@ -1,5 +1,6 @@
 package com.example.santa.babycalc;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.CountDownTimer;
 import android.support.v7.app.AlertDialog;
@@ -127,13 +128,18 @@ public class PlayActivity extends AppCompatActivity {
 
             ct.start();
         } else {
-            /*AlertDialog.Builder builder = new AlertDialog.Builder(this);
-            builder.setMessage("Nouveau score: "+score).setTitle("Fin");
-            AlertDialog dialog = builder.create();*/
-            Intent returnIntent = new Intent();
-            returnIntent.putExtra("score", score);
-            setResult(RESULT_OK, returnIntent);
-            finish();
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setMessage("Nouveau score: "+score).setTitle("Fin").setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int which) {
+                    Intent returnIntent = new Intent();
+                    returnIntent.putExtra("score", score);
+                    setResult(RESULT_OK, returnIntent);
+                    finish();
+                }
+            });
+            AlertDialog dialog = builder.create();
+            dialog.setCancelable(false);
+            dialog.show();
         }
     }
 }
