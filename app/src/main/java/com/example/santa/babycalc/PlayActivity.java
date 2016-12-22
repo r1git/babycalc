@@ -137,14 +137,13 @@ public class PlayActivity extends AppCompatActivity {
             }
             result = a + b;
             textCalc.setText(a+" + "+b+" = ");
-            ct = new CountDownTimer(time*1000, 1000) {
+            ct = new CountDownTimer(time*1000, 500) {
                 public void onTick(long untilFinished) {
-                    counter.setText(Long.toString(untilFinished / 1000));
+                    counter.setText(Long.toString(untilFinished/1000));
                 }
 
                 public void onFinish() {
                     sph.play(soundFail);
-                    counter.setText("0");
                     textLog.setText("Trop tard !");
                     res = "";
                     resBox.setText(res);
