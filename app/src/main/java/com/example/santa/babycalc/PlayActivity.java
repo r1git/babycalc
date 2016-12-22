@@ -27,6 +27,11 @@ public class PlayActivity extends AppCompatActivity {
     private static TextView textScore = null;
     private static int result = -1;
     private static Random rand = null;
+    private static SoundPoolHelper sph = null;
+    private static int soundClick = 0;
+    private static int soundAlert = 0;
+    private static int soundOK = 0;
+    private static int soundFail = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,12 +53,20 @@ public class PlayActivity extends AppCompatActivity {
         textScore  = ((TextView) findViewById(R.id.textScore));
         textScore.setText("Score: 0");
         rand = new Random();
+
+        sph = new SoundPoolHelper(1, this);
+        soundClick = sph.load(this, R.raw.tick, 1);
+        soundAlert = sph.load(this, R.raw.alert, 1);
+        soundOK = sph.load(this, R.raw.click2, 1);
+        soundFail = sph.load(this, R.raw.fail, 1);
         time += 1;
+        sph.play(soundAlert);
+
         initCT();
     }
 
     public void clickNum(View view) {
-        //TODO: play sound click
+        sph.play(soundClick);
         String num = (String) ((Button)view).getText();
         if (res.length() < 2 && (res.length() == 1 || num != "0")) {
             res += num;
@@ -64,11 +77,9 @@ public class PlayActivity extends AppCompatActivity {
 
     public void clickDel(View view) {
         if(res.length() > 0) {
-            //TODO: play sound del
+            sph.play(soundClick);
             res = res.substring(0, res.length() - 1);
             resBox.setText(res);
-        } else {
-            //TODO: play sound fail
         }
     }
 
@@ -76,12 +87,12 @@ public class PlayActivity extends AppCompatActivity {
         if (res.length()>0) {
             ct.cancel();
             if (Integer.parseInt(res) == result) {
-                //TODO: play sound good !!
+                sph.play(soundOK);
                 score += 10 - time + level;
                 textLog.setText("Bravo !! ");
                 textScore.setText("Score: " + score);
             } else {
-                //TODO: play sound fail !!
+                sph.play(soundFail);
                 textLog.setText("Faux !! C'était " + result);
             }
             res = "";
@@ -134,6 +145,7 @@ public class PlayActivity extends AppCompatActivity {
                     Intent returnIntent = new Intent();
                     returnIntent.putExtra("score", score);
                     setResult(RESULT_OK, returnIntent);
+                    sph.release();
                     finish();
                 }
             });
