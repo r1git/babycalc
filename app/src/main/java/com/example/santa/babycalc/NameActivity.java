@@ -14,15 +14,25 @@ public class NameActivity extends AppCompatActivity {
     public static final String EXTRA_PLAYER = "player";
     public static final String EXTRA_PLAYER_ID = "player_id";
     public int[] score;
+    private static SoundPoolHelper sph = null;
+    private int soundOva = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_name);
-
+        sph = new SoundPoolHelper(1, this);
+        soundOva = sph.load(this, R.raw.ovation, 1);
         score = new int[4];
         refreshScore();
 
+    }
+
+    @Override
+    protected void onDestroy() {
+        if(sph != null)
+            sph.release();
+        super.onDestroy();
     }
 
     private void refreshScore() {
@@ -55,6 +65,9 @@ public class NameActivity extends AppCompatActivity {
                 editor.putInt("score"+requestCode, pscore);
                 editor.commit();
                 refreshScore();
+            }
+            if (pscore >= score[requestCode]) {
+                sph.play(soundOva);
             }
         }
     }

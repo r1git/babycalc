@@ -65,6 +65,13 @@ public class PlayActivity extends AppCompatActivity {
         initCT();
     }
 
+    @Override
+    protected void onDestroy() {
+        if(sph != null)
+            sph.release();
+        super.onDestroy();
+    }
+
     public void clickNum(View view) {
         sph.play(soundClick);
         String num = (String) ((Button)view).getText();
@@ -145,7 +152,6 @@ public class PlayActivity extends AppCompatActivity {
                     Intent returnIntent = new Intent();
                     returnIntent.putExtra("score", score);
                     setResult(RESULT_OK, returnIntent);
-                    sph.release();
                     finish();
                 }
             });
