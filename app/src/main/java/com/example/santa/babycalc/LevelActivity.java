@@ -30,6 +30,7 @@ public class LevelActivity extends AppCompatActivity {
         textTime.setText("Time : "+time);
 
         SeekBar sb = (SeekBar) findViewById(R.id.seekBar);
+        sb.setProgress(time);
         sb.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
