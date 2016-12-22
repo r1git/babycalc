@@ -53,11 +53,27 @@
         android:layout_toEndOf="@+id/textCalc"
         android:textSize="24sp" />
 
+    <TextView
+        android:text="10"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textCounter"
+        android:layout_weight="1"
+        android:textSize="24sp"
+        android:textColor="@android:color/holo_red_dark"
+        android:layout_below="@+id/textBar"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginRight="23dp"
+        android:layout_marginEnd="23dp" />
+
     <TableLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/Calc"
+        android:layout_marginTop="68dp"
         android:layout_below="@+id/textCalc"
+        android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true">
 
         <TableRow
@@ -169,18 +185,4 @@
                 android:layout_weight="1"/>
         </TableRow>
     </TableLayout>
-
-    <TextView
-        android:text="10"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/textCounter"
-        android:layout_weight="1"
-        android:textSize="24sp"
-        android:textColor="@android:color/holo_red_dark"
-        android:layout_below="@+id/textBar"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginRight="23dp"
-        android:layout_marginEnd="23dp" />
 </RelativeLayout>
