@@ -35,6 +35,13 @@ public class NameActivity extends AppCompatActivity {
         super.onDestroy();
     }
 
+    @Override
+    protected void onPause() {
+        TextView record = ((TextView) findViewById(R.id.textRecord));
+        record.setText("");
+        super.onPause();
+    }
+
     private void refreshScore() {
         SharedPreferences settings = getPreferences(0);
         for(int i=0; i<4;i++) {
@@ -59,6 +66,9 @@ public class NameActivity extends AppCompatActivity {
         if(resultCode == RESULT_OK) {
             int pscore = data.getIntExtra("score", 0);
             if (pscore > score[requestCode]) {
+                TextView record = ((TextView) findViewById(R.id.textRecord));
+                record.setText("Nouveau Record !!!");
+
                 score[requestCode] = pscore;
                 SharedPreferences settings = getPreferences(0);
                 SharedPreferences.Editor editor = settings.edit();
