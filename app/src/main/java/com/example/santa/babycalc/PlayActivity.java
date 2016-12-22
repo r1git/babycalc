@@ -67,9 +67,17 @@ public class PlayActivity extends AppCompatActivity {
 
     @Override
     protected void onDestroy() {
+        if(ct != null)
+            ct.cancel();
         if(sph != null)
             sph.release();
         super.onDestroy();
+    }
+
+    @Override
+    protected void onPause() {
+        finish();
+        super.onPause();
     }
 
     public void clickNum(View view) {
