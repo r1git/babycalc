@@ -47,6 +47,7 @@ public class PlayActivity extends AppCompatActivity {
         textScore  = ((TextView) findViewById(R.id.textScore));
         textScore.setText("Score: 0");
         rand = new Random();
+        time += 1;
         initCT();
     }
 
@@ -94,16 +95,18 @@ public class PlayActivity extends AppCompatActivity {
         int a,b;
         played += 1;
 
+        if(ct!=null)
+            ct.cancel();
         if(played<=10) {
             if (level == 1) {
-                a = rand.nextInt(5);
-                b = rand.nextInt(5);
+                a = rand.nextInt(4)+1;
+                b = rand.nextInt(4)+1;
             } else if (level == 2) {
-                a = rand.nextInt(10);
-                b = rand.nextInt(5);
+                a = rand.nextInt(9)+1;
+                b = rand.nextInt(4)+1;
             } else {
-                a = rand.nextInt(10);
-                b = rand.nextInt(10);
+                a = rand.nextInt(9)+1;
+                b = rand.nextInt(9)+1;
             }
             result = a + b;
             textCalc.setText(a+" + "+b+" = ");
@@ -114,6 +117,7 @@ public class PlayActivity extends AppCompatActivity {
 
                 public void onFinish() {
                     //TODO: play sound timeout
+                    counter.setText("0");
                     textLog.setText("Trop tard !");
                     res = "";
                     resBox.setText(res);
