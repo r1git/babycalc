@@ -88,7 +88,7 @@ public class PlayActivity extends AppCompatActivity {
             ct.cancel();
             if (Integer.parseInt(res) == result) {
                 sph.play(soundOK);
-                score += 10 - time + level;
+                score += 11 - time + level;
                 textLog.setText("Bravo !! ");
                 textScore.setText("Score: " + score);
             } else {
@@ -128,7 +128,7 @@ public class PlayActivity extends AppCompatActivity {
                 }
 
                 public void onFinish() {
-                    //TODO: play sound timeout
+                    sph.play(soundFail);
                     counter.setText("0");
                     textLog.setText("Trop tard !");
                     res = "";
